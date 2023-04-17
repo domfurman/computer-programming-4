@@ -32,7 +32,7 @@ public class ProductCatalog {
     }
 
     public Product loadById(String productId) {
-        return products.get(productId);
+        return productStorage.loadById(productId);
     }
 
     public List<Product> allPublishedCatalogs() {

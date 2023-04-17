@@ -31,7 +31,7 @@ public class HashMapProductStorage implements ProductStorage {
 
     @Override
     public List<Product> allPublishedProducts() {
-        return null;
+        return products.values().stream().filter(Product::getOnline).collect(Collectors.toList());
     }
 
 

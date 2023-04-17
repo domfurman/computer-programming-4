@@ -42,4 +42,8 @@ public class Product {
     public boolean setOnline() {
         return online;
     }
+
+    public boolean getOnline() {
+        return online;
+    }
 }
