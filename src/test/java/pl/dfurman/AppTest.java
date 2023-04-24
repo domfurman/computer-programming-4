@@ -1,4 +1,4 @@
-package pl.dfurman.productcatalog;
+package pl.dfurman;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

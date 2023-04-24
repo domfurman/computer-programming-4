@@ -11,6 +11,7 @@ public class Product {
     private BigDecimal price;
     private String imageKey;
     private boolean online;
+    private String image;
 
     public Product(UUID uuid, String name, String desc) {
 
@@ -39,11 +40,28 @@ public class Product {
         return imageKey;
     }
 
-    public boolean setOnline() {
-        return online;
+    public void setOnline(boolean online) {
+        this.online=online;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDesc() {
+        return desc;
     }
 
     public boolean getOnline() {
         return online;
+    }
+
+    public void setImage(String imageKey) {
+
+        image = imageKey;
+    }
+
+    public String getImage() {
+        return image;
     }
 }

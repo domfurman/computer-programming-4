@@ -2,18 +2,17 @@ package pl.dfurman.productcatalog;
 
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ProductCatalog {
 
     //Biznes
 
     //Tech
-    HashMapProductStorage productStorage;
+    ProductStorage productStorage;
 
 
-    public ProductCatalog(ListProductStorage listProductStorage) {
-        this.productStorage = new HashMapProductStorage();;
+    public ProductCatalog(ProductStorage productStorage) {
+        this.productStorage = productStorage;
     }
 
     public List<Product> allProducts() {
@@ -45,24 +44,29 @@ public class ProductCatalog {
     }
 
     public void publish(String productId) {
-        Product loaded = this.loadById(productId);
+        Product product = loadById(productId);
 
-        if (loaded.getPrice() == null) {
+        if (product.getImage() == null) {
             throw new ProductCantBePublishedException();
         }
 
-        if (loaded.getImageKey() == null) {
+        if (product.getPrice() == null) {
             throw new ProductCantBePublishedException();
         }
 
-        loaded.setOnline();
+        product.setOnline(true);
     }
 
-    public void assignImage(String productId, String path) {
+    public void assignImage(String productId, String imageKey) {
+        Product product = loadById(productId);
 
+        product.setImage(imageKey);
     }
+
 
     public List<Product> allPublishedProducts() {
-        return Collections.emptyList();
+        return productStorage.allPublishedProducts();
     }
+
+
 }
