@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import pl.dfurman.productcatalog.HashMapProductStorage;
 import pl.dfurman.productcatalog.ProductCatalog;
+import pl.dfurman.sales.CartStorage;
+import pl.dfurman.sales.ProductDetailsProvider;
+import pl.dfurman.sales.Sales;
 
 import java.math.BigDecimal;
 
@@ -22,5 +25,10 @@ public class Main {
         productCatalog.assignImage(product1, "foo/niece/image.jpg");
         productCatalog.publish(product1);
         return productCatalog;
+    }
+
+    @Bean
+    Sales createSale() {
+        return new Sales(new CartStorage(), new ProductDetailsProvider());
     }
 }
