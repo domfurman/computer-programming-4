@@ -27,7 +27,7 @@ public class CollectingProductsTest {
         //Act
         sales.addToCart(customerId, productId);
 
-        //Asssert
+        //Assert
         assertCustomerCartContainsNProducts(customerId, 1);
     }
 
@@ -45,6 +45,6 @@ public class CollectingProductsTest {
     }
 
     private Sales thereIsSalesModule() {
-        return new Sales(cartStorage, );
+        return new Sales(cartStorage, productDetailsProvider);
     }
 }

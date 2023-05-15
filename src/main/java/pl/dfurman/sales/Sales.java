@@ -15,13 +15,13 @@ public class Sales {
         Cart cart = loadForCustomer(customerId)
                 .orElse(Cart.empty());
 
-        Product product = loadDetailsForProduct(productId)
+        ProductDetails product = loadDetailsForProduct(productId)
                 .orElseThrow(() -> new NoSuchProductException());
         cart.add(product);
         cartStorage.save(customerId, cart);
     }
 
-    private Optional<Product> loadDetailsForProduct(String productId) {
+    private Optional<ProductDetails> loadDetailsForProduct(String productId) {
         return productDetailsProvider.load(productId);
     }
 
