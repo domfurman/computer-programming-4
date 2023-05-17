@@ -20,10 +20,16 @@ public class Main {
     @Bean
     ProductCatalog createMyProductCatalog() {
         ProductCatalog productCatalog = new ProductCatalog(new HashMapProductStorage());
-        String product1 = productCatalog.addProduct("how to think less", "idk");
-        productCatalog.changePrice(product1, BigDecimal.valueOf(10.10));
+        String product1 = productCatalog.addProduct("How to think less", "psychological");
+        productCatalog.changePrice(product1, BigDecimal.valueOf(100));
         productCatalog.assignImage(product1, "foo/niece/image.jpg");
         productCatalog.publish(product1);
+
+        String product2 = productCatalog.addProduct("Song of Ice and Fire", "fantasy");
+        productCatalog.changePrice(product2, BigDecimal.valueOf(150));
+        productCatalog.assignImage(product2, "foo/niece/image.jpg");
+        productCatalog.publish(product2);
+
         return productCatalog;
     }
 

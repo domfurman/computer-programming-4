@@ -15,14 +15,15 @@ public class Sales {
         Cart cart = loadForCustomer(customerId)
                 .orElse(Cart.empty());
 
-        ProductDetails product = loadDetailsForProduct(productId)
-                .orElseThrow(() -> new NoSuchProductException());
+        ProductDetails product = loadDetailsForProduct(productId);
+        //        .orElseThrow(() -> new NoSuchProductException());
         cart.add(product);
         cartStorage.save(customerId, cart);
     }
 
-    private Optional<ProductDetails> loadDetailsForProduct(String productId) {
-        return productDetailsProvider.load(productId);
+    private ProductDetails loadDetailsForProduct(String productId) {
+        return productDetailsProvider.load(productId)
+                .orElseThrow(() -> new NoSuchProductException());
     }
 
     private Optional<Cart> loadForCustomer(String customerId) {
@@ -30,6 +31,6 @@ public class Sales {
     }
 
     public Offer getCurrentOffer(String currentCustomer) {
-        return null;
+        return new Offer();
     }
 }

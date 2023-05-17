@@ -3,8 +3,7 @@ package pl.dfurman.sales;
 import java.util.Optional;
 
 public class Cart {
-
-
+    int itemsCount;
     public Cart() {}
     public static Cart empty() {
         return new Cart();
@@ -15,6 +14,6 @@ public class Cart {
     }
 
     public int itemsCount() {
-        return 0;
+        return itemsCount++;
     }
 }

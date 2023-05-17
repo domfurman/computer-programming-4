@@ -3,7 +3,6 @@ const foo = () => {console.log("Hello World!")};
 
 
 
-
 const getProducts = () => {
     return fetch("/api/products")
         .then(response => response.json());
@@ -11,23 +10,21 @@ const getProducts = () => {
 
 const getCurrentOffer = () => {
     return fetch("/api/offer")
-        .then(response => response.json())
+        .then(response => response.json());
 }
 
 const refreshOffer = async () => {
     const offer = await getCurrentOffer();
-    const cart = document.querySelector(".cart")
-
-    cart.querySelector(".total").textContent = `${offer.total} PLN`;
-    cart.querySelector(".itemsCount").textContent = `${offer.itemsCount} items`;
+    const cart = document.querySelector('.cart');
+    cart.querySelector('.total').textContent = `${offer.total} PLN`;
+    cart.querySelector('.itemsCount').textContent = `${offer.itemsCount} items`;
 }
 
 const createHtmlFromString = (htmlAsString) => {
-    const tmpElm = document.createElement('div');
-    tmpElm.innerHTML = htmlAsString.trim();
-    return tmpElm.firstChild;
+    const tmpElem = document.createElement('div');
+    tmpElem.innerHTML = htmlAsString.trim();
+    return tmpElem.firstChild;
 }
-
 
 const createHtmlComponent = (product) => {
     const template = `
@@ -62,11 +59,11 @@ const initializeAddToCartHandler = (htmlEl) => {
 };
 
 (async () => {
-    const productListElement = document.querySelector('#products-list');
+    const productsListEl = document.querySelector('#products-list');
     await refreshOffer();
     const products = await getProducts();
     products
         .map(product => createHtmlComponent(product))
         .map(productComponent => initializeAddToCartHandler(productComponent))
-        .forEach(element => productListElement.appendChild(element));
+        .forEach(el => productsListEl.appendChild(el));
 })();

@@ -61,7 +61,7 @@ public class ProductCatalogTest {
         catalog.assignImage(productId, "nice/picture.jpg" );
 
         Product loaded = catalog.loadById(productId);
-        assertEquals("nice/picture.jpg", loaded.getImageKey());
+        assertEquals("nice/picture.jpg", loaded.getImage());
 
     }
 

@@ -7,7 +7,15 @@ public class Offer {
     Integer itemsCount;
 
     public Offer() {
-        BigDecimal total;
-        Integer itemsCount;
+        BigDecimal total = BigDecimal.valueOf(185);
+        Integer itemsCount = 2;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public Integer getItemsCount() {
+        return itemsCount;
     }
 }

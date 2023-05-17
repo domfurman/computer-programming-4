@@ -8,8 +8,7 @@ public class ProductCatalog {
     //Biznes
 
     //Tech
-    ProductStorage productStorage;
-
+    private final ProductStorage productStorage;
 
     public ProductCatalog(ProductStorage productStorage) {
         this.productStorage = productStorage;
@@ -39,8 +38,8 @@ public class ProductCatalog {
     }
 
     public void changePrice(String productId, BigDecimal newPrice) {
-        Product loaded = this.loadById(productId);
-        loaded.changePrice(newPrice);
+        Product product = this.loadById(productId);
+        product.changePrice(newPrice);
     }
 
     public void publish(String productId) {
@@ -62,7 +61,6 @@ public class ProductCatalog {
 
         product.setImage(imageKey);
     }
-
 
     public List<Product> allPublishedProducts() {
         return productStorage.allPublishedProducts();
