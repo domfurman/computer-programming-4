@@ -31,7 +31,7 @@ public class CollectingProductsTest {
 
         //Assert
         //assertCustomerCartContainsNProducts(customerId, 1);
-        assertEquals(2, sales);
+        assertEquals(1, sales.itemsAmount(customerId));
     }
 
     private void assertCustomerCartContainsNProducts(String customerId, int productsCount) {

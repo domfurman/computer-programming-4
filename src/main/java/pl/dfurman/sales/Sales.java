@@ -33,4 +33,10 @@ public class Sales {
     public Offer getCurrentOffer(String currentCustomer) {
         return new Offer();
     }
+
+    public int itemsAmount(String customerId) {
+        Cart cart = loadForCustomer(customerId)
+                .orElse(Cart.empty());
+        return  cart.itemsCount();
+    }
 }
