@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class CollectingProductsTest {
 
@@ -28,7 +30,8 @@ public class CollectingProductsTest {
         sales.addToCart(customerId, productId);
 
         //Assert
-        assertCustomerCartContainsNProducts(customerId, 1);
+        //assertCustomerCartContainsNProducts(customerId, 1);
+        assertEquals(2, sales);
     }
 
     private void assertCustomerCartContainsNProducts(String customerId, int productsCount) {
