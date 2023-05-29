@@ -4,12 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import pl.dfurman.productcatalog.HashMapProductStorage;
+import pl.dfurman.productcatalog.Product;
 import pl.dfurman.productcatalog.ProductCatalog;
-import pl.dfurman.sales.CartStorage;
-import pl.dfurman.sales.ProductDetailsProvider;
-import pl.dfurman.sales.Sales;
+import pl.dfurman.sales.*;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 @SpringBootApplication
 public class Main {
@@ -34,7 +34,24 @@ public class Main {
     }
 
     @Bean
-    Sales createSale() {
-        return new Sales(new CartStorage(), new ProductDetailsProvider());
+    Sales createSalesViaObjects(ProductCatalog catalog) {
+        return new Sales(new CartStorage(), new ProductCatalogProductDetailsProvider(catalog));
     }
+
+    Sales createSalesViaLambda(ProductCatalog catalog) {
+        return new Sales(
+                new CartStorage(),
+                (String productId) -> {
+                    Product product = catalog.loadById(productId);
+                    if (product == null) {
+                        return Optional.empty();
+                    }
+
+                    return Optional.of(new ProductDetails(
+                            product.getId(),
+                            product.getName(),
+                            product.getPrice()
+                    ))
+
+                });
 }

@@ -8,14 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 
 public class CollectingProductsTest {
 
     CartStorage cartStorage;
     List<ProductDetails> productDetails;
-    ProductDetailsProvider productDetailsProvider;
+    AlwaysMissingProductDetailsProvider productDetailsProvider;
 
     @BeforeEach
     void setup() {

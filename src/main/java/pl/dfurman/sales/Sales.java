@@ -4,11 +4,11 @@ import java.util.Optional;
 
 public class Sales {
     private CartStorage cartStorage;
-    private ProductDetailsProvider productDetailsProvider;
+    private ProductCatalogProductDetailsProvider productCatalogProductDetailsProvider;
 
-    public Sales(CartStorage cartStorage, ProductDetailsProvider productDetailsProvider) {
+    public Sales(CartStorage cartStorage, ProductCatalogProductDetailsProvider productCatalogProductDetailsProvider) {
         this.cartStorage = cartStorage;
-        this.productDetailsProvider = productDetailsProvider;
+        this.productCatalogProductDetailsProvider = productCatalogProductDetailsProvider;
     }
 
     public void addToCart(String customerId, String productId) {
@@ -22,7 +22,7 @@ public class Sales {
     }
 
     private ProductDetails loadDetailsForProduct(String productId) {
-        return productDetailsProvider.load(productId)
+        return productCatalogProductDetailsProvider.load(productId)
                 .orElseThrow(() -> new NoSuchProductException());
     }
 
@@ -38,5 +38,19 @@ public class Sales {
         Cart cart = loadForCustomer(customerId)
                 .orElse(Cart.empty());
         return  cart.itemsCount();
+    }
+
+    public ReservationData acceptOffer(String customerId, AcceptOfferRequest request) {
+        Offer offer = this.getCurrentOffer(customerId);
+
+        Reservation reservation = Reservation.of(offer);
+
+        String paymentUrl = paymentGateway.register();
+
+        reservation.registerPayment(paymentUrl);
+
+        reservationStorage.save(reservation);
+
+        return new
     }
 }
