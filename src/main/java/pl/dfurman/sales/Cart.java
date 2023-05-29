@@ -2,22 +2,20 @@ package pl.dfurman.sales;
 
 import pl.dfurman.productcatalog.Product;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class Cart {
-    private List<ProductDetails> items;
+    Map<String, ProductDetails> items;
     int itemsCount;
     public Cart() {
-        this.items = new ArrayList<>();
+        this.items = new HashMap<>();
     }
     public static Cart empty() {
         return new Cart();
     }
 
     public void add(ProductDetails productDetails) {
-        items.add(productDetails);
+        items.put(productDetails.getProductId(), productDetails);
     }
 
     public int itemsCount() {
