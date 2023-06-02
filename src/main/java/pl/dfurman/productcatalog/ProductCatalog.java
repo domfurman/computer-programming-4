@@ -33,6 +33,7 @@ public class ProductCatalog {
         return productStorage.loadById(productId);
     }
 
+
     public List<Product> allPublishedCatalogs() {
         return Collections.emptyList();
     }

@@ -14,6 +14,7 @@ import java.util.Optional;
 public class Sales {
     private CartStorage cartStorage;
     private ProductDetailsProvider productDetailsProvider;
+    private ProductDetails productDetails;
 
     public Sales(CartStorage cartStorage, ProductDetailsProvider productDetailsProvider) {
         this.cartStorage = cartStorage;
@@ -24,15 +25,16 @@ public class Sales {
         Cart cart = loadForCustomer(customerId)
                 .orElse(Cart.empty());
 
-        ProductDetails product = loadDetailsForProduct(productId);
-        //        .orElseThrow(() -> new NoSuchProductException());
+        ProductDetails product = loadDetailsForProduct(productId)
+                .orElseThrow(() -> new NoSuchProductException());
         cart.add(product);
         cartStorage.save(customerId, cart);
     }
 
-    private ProductDetails loadDetailsForProduct(String productId) {
-        return productDetailsProvider.load(productId)
-                .orElseThrow(() -> new NoSuchProductException());
+    //NullPointerException is thrown here
+    private Optional<ProductDetails> loadDetailsForProduct(String productId) {
+        return productDetailsProvider.load(productId);
+
     }
 
     private Optional<Cart> loadForCustomer(String customerId) {

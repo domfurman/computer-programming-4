@@ -6,6 +6,7 @@ import pl.dfurman.sales.cart.Cart;
 import pl.dfurman.sales.cart.CartStorage;
 import pl.dfurman.sales.product.AlwaysMissingProductDetailsProvider;
 import pl.dfurman.sales.product.ProductDetails;
+import pl.dfurman.sales.product.ProductDetailsProvider;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,11 +18,12 @@ public class CollectingProductsTest {
 
     CartStorage cartStorage;
     List<ProductDetails> productDetails;
-    AlwaysMissingProductDetailsProvider productDetailsProvider;
+    ProductDetailsProvider productDetailsProvider;
 
     @BeforeEach
     void setup() {
         cartStorage = new CartStorage();
+        productDetailsProvider = new AlwaysMissingProductDetailsProvider();
         productDetails = new ArrayList<>();
     }
 
@@ -46,10 +48,10 @@ public class CollectingProductsTest {
     }
 
     private String thereIsProduct(String name, BigDecimal price) {
-        productDetails.add(
-                new ProductDetails(UUID.randomUUID().toString(), name, price)
-        );
-        return name;
+        //productDetails.add(
+        //        new ProductDetails(UUID.randomUUID().toString(), name, price)
+        //);
+        return UUID.randomUUID().toString();
     }
 
     private String thereIsCustomer(String id) {

@@ -18,7 +18,7 @@ public class Cart {
     }
 
     public void add(ProductDetails productDetails) {
-        products.add(productDetails.getProductId());
+        products.add(productDetails.getId());
     }
 
     public int itemsCount() {
