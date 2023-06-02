@@ -52,13 +52,13 @@ public class Sales {
     public PaymentData acceptOffer(String customerId, AcceptOffer request) {
         Offer offer = this.getCurrentOffer(customerId);
 
-        Reservation reservation = Reservation.from(offer);
+        //Reservation reservation = Reservation.from(offer);
 
         //String paymentUrl = paymentGateway.register();
 
         //reservation.registerPayment(paymentUrl);
 
-        reservationStorage.save(reservation);
+        //reservationStorage.save(reservation);
 
         return null;
     }

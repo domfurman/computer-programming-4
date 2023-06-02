@@ -30,14 +30,14 @@ public class CollectingProductsTest {
 
         //Arrange
         Sales sales = thereIsSalesModule();
-        String customerId = thereIsCustomer("Dominik");
+        String customer = thereIsCustomer("Dominik");
         String productId = thereIsProduct("puzzle", BigDecimal.valueOf(15));
         //Act
-        sales.addToCart(customerId, productId);
+        sales.addToCart(customer, productId);
 
         //Assert
-        assertCustomerCartContainsNProducts(customerId, 1);
-        //assertEquals(1, sales.itemsAmount(customerId));
+        assertCustomerCartContainsNProducts(customer, 1);
+        //assertEquals(1, sales.itemsAmount(customer));
     }
 
     private void assertCustomerCartContainsNProducts(String customerId, int productsCount) {

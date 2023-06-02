@@ -49,12 +49,11 @@ public class Main {
                     if (product == null) {
                         return Optional.empty();
                     }
-
                     return Optional.of(new ProductDetails(
                             product.getId(),
                             product.getName(),
                             product.getPrice()
-                    ))
-
+                    ));
                 });
+    }
 }
