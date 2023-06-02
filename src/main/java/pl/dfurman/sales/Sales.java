@@ -6,17 +6,18 @@ import pl.dfurman.sales.offer.Offer;
 import pl.dfurman.sales.product.NoSuchProductException;
 import pl.dfurman.sales.product.ProductCatalogProductDetailsProvider;
 import pl.dfurman.sales.product.ProductDetails;
+import pl.dfurman.sales.product.ProductDetailsProvider;
 import pl.dfurman.sales.reservation.Reservation;
 
 import java.util.Optional;
 
 public class Sales {
     private CartStorage cartStorage;
-    private ProductCatalogProductDetailsProvider productCatalogProductDetailsProvider;
+    private ProductDetailsProvider productDetailsProvider;
 
-    public Sales(CartStorage cartStorage, ProductCatalogProductDetailsProvider productCatalogProductDetailsProvider) {
+    public Sales(CartStorage cartStorage, ProductDetailsProvider productDetailsProvider) {
         this.cartStorage = cartStorage;
-        this.productCatalogProductDetailsProvider = productCatalogProductDetailsProvider;
+        this.productDetailsProvider = productDetailsProvider;
     }
 
     public void addToCart(String customerId, String productId) {
@@ -30,7 +31,7 @@ public class Sales {
     }
 
     private ProductDetails loadDetailsForProduct(String productId) {
-        return productCatalogProductDetailsProvider.load(productId)
+        return productDetailsProvider.load(productId)
                 .orElseThrow(() -> new NoSuchProductException());
     }
 
@@ -51,14 +52,14 @@ public class Sales {
     public PaymentData acceptOffer(String customerId, AcceptOffer request) {
         Offer offer = this.getCurrentOffer(customerId);
 
-        Reservation reservation = Reservation.of(offer);
+        Reservation reservation = Reservation.from(offer);
 
-        String paymentUrl = paymentGateway.register();
+        //String paymentUrl = paymentGateway.register();
 
-        reservation.registerPayment(paymentUrl);
+        //reservation.registerPayment(paymentUrl);
 
         reservationStorage.save(reservation);
 
-        return new
+        return null;
     }
 }
