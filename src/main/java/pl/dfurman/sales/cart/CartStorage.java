@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public class CartStorage {
     //public Optional<Cart> cart;
-    Map<String, Cart> carts;
+    HashMap<String, Cart> carts;
 
     public CartStorage() {
         this.carts = new HashMap<>();
@@ -17,7 +17,7 @@ public class CartStorage {
         //return Optional.of(carts.get(customerId));
     }
 
-    public void save(String customerId, Cart cart) {
-        carts.put(customerId, cart);
+    public void save(String customerId, Cart customerCart) {
+        carts.put(customerId, customerCart);
     }
 }
