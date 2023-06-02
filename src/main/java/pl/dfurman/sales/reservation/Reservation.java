@@ -19,16 +19,4 @@ public class Reservation {
         this.total = total;
         this.paymentId = paymentId;
     }
-
-    public String getId() {
-        return id;
-    }
-
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public String getPaymentId() {
-        return paymentId;
-    }
 }
