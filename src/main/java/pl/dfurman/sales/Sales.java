@@ -2,6 +2,7 @@ package pl.dfurman.sales;
 
 import pl.dfurman.sales.cart.Cart;
 import pl.dfurman.sales.cart.CartStorage;
+import pl.dfurman.sales.offer.Offer;
 
 import java.util.Optional;
 

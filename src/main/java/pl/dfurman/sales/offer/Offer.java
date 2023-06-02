@@ -1,4 +1,4 @@
-package pl.dfurman.sales;
+package pl.dfurman.sales.offer;
 
 import java.math.BigDecimal;
 
@@ -7,8 +7,8 @@ public class Offer {
     Integer itemsCount;
 
     public Offer() {
-        BigDecimal total = BigDecimal.valueOf(185);
-        Integer itemsCount = 2;
+        BigDecimal total = BigDecimal.ZERO;
+        Integer itemsCount = 0;
     }
 
     public BigDecimal getTotal() {
