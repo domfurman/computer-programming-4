@@ -48,9 +48,9 @@ public class CollectingProductsTest {
     }
 
     private String thereIsProduct(String name, BigDecimal price) {
-        //productDetails.add(
-        //        new ProductDetails(UUID.randomUUID().toString(), name, price)
-        //);
+        productDetails.add(
+                new ProductDetails(UUID.randomUUID().toString(), name, price)
+        );
         return UUID.randomUUID().toString();
     }
 

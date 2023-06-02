@@ -22,6 +22,7 @@ public class ProductDetails implements ProductDetailsProvider{
     public Optional<ProductDetails> load(String productId) {
         Optional<Product> product = productCatalog.allProducts().stream().filter(p -> p.getId().equals(productId)).findFirst();
 
+
         if (product == null) {
             return Optional.empty();
         }
@@ -30,12 +31,6 @@ public class ProductDetails implements ProductDetailsProvider{
                 product.get().getName(),
                 product.get().getPrice()
         ));
-        //return Optional.of(new ProductDetails(
-        //        product.getId(),
-        //        getName(),
-        //        getPrice()
-        //));
-
     }
 
     public Optional<Product> findProductById(String id) {
