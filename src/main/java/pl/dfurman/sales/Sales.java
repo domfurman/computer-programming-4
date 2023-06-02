@@ -3,6 +3,10 @@ package pl.dfurman.sales;
 import pl.dfurman.sales.cart.Cart;
 import pl.dfurman.sales.cart.CartStorage;
 import pl.dfurman.sales.offer.Offer;
+import pl.dfurman.sales.product.NoSuchProductException;
+import pl.dfurman.sales.product.ProductCatalogProductDetailsProvider;
+import pl.dfurman.sales.product.ProductDetails;
+import pl.dfurman.sales.reservation.Reservation;
 
 import java.util.Optional;
 
@@ -44,7 +48,7 @@ public class Sales {
         return  cart.itemsCount();
     }
 
-    public ReservationData acceptOffer(String customerId, AcceptOfferRequest request) {
+    public PaymentData acceptOffer(String customerId, AcceptOffer request) {
         Offer offer = this.getCurrentOffer(customerId);
 
         Reservation reservation = Reservation.of(offer);

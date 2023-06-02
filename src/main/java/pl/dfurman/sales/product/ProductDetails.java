@@ -1,4 +1,4 @@
-package pl.dfurman.sales;
+package pl.dfurman.sales.product;
 
 import java.math.BigDecimal;
 

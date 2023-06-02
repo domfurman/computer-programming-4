@@ -1,4 +1,4 @@
-package pl.dfurman.sales;
+package pl.dfurman.sales.reservation;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

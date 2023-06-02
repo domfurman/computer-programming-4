@@ -1,11 +1,11 @@
-package pl.dfurman.sales;
+package pl.dfurman.sales.product;
 
 import pl.dfurman.productcatalog.Product;
 import pl.dfurman.productcatalog.ProductCatalog;
 
 import java.util.Optional;
 
-public class ProductCatalogProductDetailsProvider implements ProductDetailsProvider{
+public class ProductCatalogProductDetailsProvider implements ProductDetailsProvider {
 
     ProductCatalog productCatalog;
 

@@ -3,6 +3,8 @@ package pl.dfurman.sales;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import pl.dfurman.sales.reservation.Reservation;
+import pl.dfurman.sales.reservation.ReservationRepository;
 
 import java.math.BigDecimal;
 

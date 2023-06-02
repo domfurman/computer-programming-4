@@ -28,8 +28,8 @@ public class OfferAcceptanceHttpTest {
         http.postForEntity(String.format("/api/add-to-cart/%s",productId), null, Object.class);
 
         //Act
-        AcceptOfferRequest request = new AcceptOfferRequest("Dominik", "dominik@example.com");
-        http.postForEntity(String.format("/api/accept-offer",productId), request, ReservationData.class);
+        AcceptOffer request = new AcceptOffer("Dominik", "dominik@example.com");
+        http.postForEntity(String.format("/api/accept-offer",productId), request, PaymentData.class);
 
         //Assert
         assertEquals(response.getStatusCode(), HttpStatus.OK);

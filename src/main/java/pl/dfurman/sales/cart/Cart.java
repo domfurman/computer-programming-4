@@ -1,6 +1,6 @@
 package pl.dfurman.sales.cart;
 
-import pl.dfurman.sales.ProductDetails;
+import pl.dfurman.sales.product.ProductDetails;
 
 import java.util.*;
 

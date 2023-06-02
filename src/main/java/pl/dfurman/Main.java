@@ -8,6 +8,8 @@ import pl.dfurman.productcatalog.Product;
 import pl.dfurman.productcatalog.ProductCatalog;
 import pl.dfurman.sales.*;
 import pl.dfurman.sales.cart.CartStorage;
+import pl.dfurman.sales.product.ProductCatalogProductDetailsProvider;
+import pl.dfurman.sales.product.ProductDetails;
 
 import java.math.BigDecimal;
 import java.util.Optional;
