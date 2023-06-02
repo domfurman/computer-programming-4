@@ -2,6 +2,8 @@ package pl.dfurman.sales;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.dfurman.sales.cart.Cart;
+import pl.dfurman.sales.cart.CartStorage;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

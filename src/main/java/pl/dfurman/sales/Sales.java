@@ -1,5 +1,8 @@
 package pl.dfurman.sales;
 
+import pl.dfurman.sales.cart.Cart;
+import pl.dfurman.sales.cart.CartStorage;
+
 import java.util.Optional;
 
 public class Sales {

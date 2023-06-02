@@ -1,4 +1,6 @@
-package pl.dfurman.sales;
+package pl.dfurman.sales.cart;
+
+import pl.dfurman.sales.ProductDetails;
 
 import java.util.*;
 
@@ -8,7 +10,7 @@ public class Cart {
     int itemsCount;
 
     public Cart() {
-        this.products = new List<String>;
+        this.products = new ArrayList<>();
     }
 
     public static Cart empty() {

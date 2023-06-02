@@ -7,6 +7,7 @@ import pl.dfurman.productcatalog.HashMapProductStorage;
 import pl.dfurman.productcatalog.Product;
 import pl.dfurman.productcatalog.ProductCatalog;
 import pl.dfurman.sales.*;
+import pl.dfurman.sales.cart.CartStorage;
 
 import java.math.BigDecimal;
 import java.util.Optional;
