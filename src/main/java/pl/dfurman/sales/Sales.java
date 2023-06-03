@@ -14,7 +14,7 @@ import java.util.Optional;
 public class Sales {
     private CartStorage cartStorage;
     private ProductDetailsProvider productDetailsProvider;
-    private ProductDetails productDetails;
+    //private ProductDetails productDetails;
 
     public Sales(CartStorage cartStorage, ProductDetailsProvider productDetailsProvider) {
         this.cartStorage = cartStorage;
