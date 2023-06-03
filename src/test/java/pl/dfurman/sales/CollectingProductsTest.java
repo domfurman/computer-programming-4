@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pl.dfurman.sales.cart.Cart;
 import pl.dfurman.sales.cart.CartStorage;
 import pl.dfurman.sales.product.AlwaysMissingProductDetailsProvider;
+import pl.dfurman.sales.product.AvailableProductsList;
 import pl.dfurman.sales.product.ProductDetails;
 import pl.dfurman.sales.product.ProductDetailsProvider;
 
@@ -17,14 +18,15 @@ import java.util.UUID;
 public class CollectingProductsTest {
 
     CartStorage cartStorage;
-    List<ProductDetails> productDetails;
+    List<ProductDetails> availableProducts;
     ProductDetailsProvider productDetailsProvider;
 
     @BeforeEach
     void setup() {
         cartStorage = new CartStorage();
-        productDetailsProvider = new AlwaysMissingProductDetailsProvider();
-        productDetails = new ArrayList<>();
+        availableProducts = new ArrayList<>();
+        //productDetailsProvider = new AlwaysMissingProductDetailsProvider();
+        //productDetails = new ArrayList<>();
     }
 
     @Test
@@ -47,11 +49,10 @@ public class CollectingProductsTest {
         assert customerCart.itemsCount() == productsCount;
     }
 
-    private String thereIsProduct(String name, BigDecimal price) {
-        productDetails.add(
-                new ProductDetails(UUID.randomUUID().toString(), name, price)
-        );
-        return UUID.randomUUID().toString();
+    private String thereIsProduct(String id, BigDecimal price) {
+        ProductDetails productDetails = new ProductDetails(id, "puzzle", price);
+        availableProducts.add(productDetails);
+        return id;
     }
 
     private String thereIsCustomer(String id) {
@@ -59,6 +60,6 @@ public class CollectingProductsTest {
     }
 
     private Sales thereIsSalesModule() {
-        return new Sales(cartStorage, productDetailsProvider);
+        return new Sales(cartStorage, new AvailableProductsList(availableProducts));
     }
 }

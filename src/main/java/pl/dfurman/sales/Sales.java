@@ -25,13 +25,14 @@ public class Sales {
         Cart cart = loadForCustomer(customerId)
                 .orElse(Cart.empty());
 
+
         ProductDetails product = loadDetailsForProduct(productId)
-                .orElseThrow(() -> new NoSuchProductException());
+                .orElseThrow(() -> new NoSuchProductException());   //NoSuchProductException is thrown
         cart.add(product);
         cartStorage.save(customerId, cart);
     }
 
-    //NullPointerException is thrown here
+    //NullPointerException was thrown here
     private Optional<ProductDetails> loadDetailsForProduct(String productId) {
         return productDetailsProvider.load(productId);
 
