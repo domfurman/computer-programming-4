@@ -1,5 +1,5 @@
-const a = 5;
-const foo = () => {console.log("Hello World!")};
+//const a = 5;
+//const foo = () => {console.log("Hello World!")};
 
 
 
@@ -33,6 +33,7 @@ const createHtmlComponent = (product) => {
             <img />
             <span>${product.price}</span>
             <button
+                type="submit"
                 class="product__add-to-cart"
                 data-product-id="${product.id}"
             >

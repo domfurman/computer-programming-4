@@ -24,4 +24,8 @@ public class Cart {
     public int itemsCount() {
         return products.size();
     }
+
+    public List<String> getProducts() {
+        return products;
+    }
 }

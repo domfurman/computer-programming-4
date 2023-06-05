@@ -27,7 +27,7 @@ public class Sales {
 
 
         ProductDetails product = loadDetailsForProduct(productId)
-                .orElseThrow(() -> new NoSuchProductException());   //NoSuchProductException is thrown
+                .orElseThrow(() -> new NoSuchProductException());   //NoSuchProductException was thrown
         cart.add(product);
         cartStorage.save(customerId, cart);
     }
