@@ -3,6 +3,8 @@ package pl.dfurman;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
+import pl.dfurman.payu.PayU;
 import pl.dfurman.productcatalog.HashMapProductStorage;
 import pl.dfurman.productcatalog.Product;
 import pl.dfurman.productcatalog.ProductCatalog;
@@ -38,7 +40,7 @@ public class Main {
 
     @Bean
     Sales createSalesViaObjects(ProductCatalog catalog) {
-        return new Sales(new CartStorage(), new ProductCatalogProductDetailsProvider(catalog));
+        return new Sales(new CartStorage(), new ProductCatalogProductDetailsProvider(catalog), new PayU(new RestTemplate()));
     }
 
     Sales createSalesViaLambda(ProductCatalog catalog) {
@@ -53,7 +55,7 @@ public class Main {
                             product.getId(),
                             product.getName(),
                             product.getPrice()
-                    ));
-                });
+                    ));},
+                new PayU(new RestTemplate()));
     }
 }

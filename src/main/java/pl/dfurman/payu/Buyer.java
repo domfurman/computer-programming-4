@@ -6,7 +6,6 @@ public class Buyer {
     String firstName;
     String lastName;
     String language;
-
     public String getEmail() {
         return email;
     }

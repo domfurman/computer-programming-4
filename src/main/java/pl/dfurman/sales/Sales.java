@@ -5,10 +5,8 @@ import pl.dfurman.sales.cart.Cart;
 import pl.dfurman.sales.cart.CartStorage;
 import pl.dfurman.sales.offer.Offer;
 import pl.dfurman.sales.product.NoSuchProductException;
-import pl.dfurman.sales.product.ProductCatalogProductDetailsProvider;
 import pl.dfurman.sales.product.ProductDetails;
 import pl.dfurman.sales.product.ProductDetailsProvider;
-import pl.dfurman.sales.reservation.Reservation;
 import pl.dfurman.sales.reservation.ReservationData;
 
 import java.util.Arrays;
@@ -57,35 +55,35 @@ public class Sales {
         return  cart.itemsCount();
     }
 
-    public PaymentData acceptOffer(String customerId, AcceptOfferRequest request) {
-        Offer offer = this.getCurrentOffer(customerId);
-
-        OrderCreateRequest orderCreateRequest = new OrderCreateRequest();
-        orderCreateRequest.setBuyer(
-                new Buyer(
-                        .setEmail(request.g)
-                        .setFirstName(request.)
-                )
-        )
-        orderCreateRequest.setProducts(Arrays.asList(
-                new Product()
-                    .setName("NAME")
-                    .setUnitPrice(21000)
-                    .setQuantity(2)
-        ));
-
-        OrderCreateResponse response = payu.handle(orderCreateRequest);
-
-        return new ReservationData(response.getRedirectUri());
-
-        //Reservation reservation = Reservation.from(offer);
-
-        //String paymentUrl = paymentGateway.register();
-
-        //reservation.registerPayment(paymentUrl);
-
-        //reservationStorage.save(reservation);
-
-        return null;
-    }
+//    public ReservationData acceptOffer(String customerId, AcceptOfferRequest request) {
+//        Offer offer = this.getCurrentOffer(customerId);
+//
+//        OrderCreateRequest orderCreateRequest = new OrderCreateRequest();
+//        orderCreateRequest.setBuyer(
+//                new Buyer()
+//                        .setFirstName("Dominik")
+//                        .setLastName("F")
+//                        .setEmail("dominik.doe@example.com")
+//        );
+//        orderCreateRequest.setProducts(Arrays.asList(
+//                new Product()
+//                    .setName("NAME")
+//                    .setUnitPrice(21000)
+//                    .setQuantity(2)
+//        ));
+//
+//        OrderCreateResponse response = payu.handle(orderCreateRequest);
+//
+//        return new ReservationData(response.getRedirectUri());
+//
+//        //Reservation reservation = Reservation.from(offer);
+//
+//        //String paymentUrl = paymentGateway.register();
+//
+//        //reservation.registerPayment(paymentUrl);
+//
+//        //reservationStorage.save(reservation);
+//
+//        //return null;
+//    }
 }

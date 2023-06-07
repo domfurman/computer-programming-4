@@ -13,10 +13,6 @@ public class Offer {
         Integer itemsCount = 0;
     }
 
-    //public Offer calculate(Cart cart) {
-    //    BigDecimal amount = cart.getProducts().stream().map(product -> product.)
-    //}
-
     public BigDecimal getTotal() {
         return total;
     }
