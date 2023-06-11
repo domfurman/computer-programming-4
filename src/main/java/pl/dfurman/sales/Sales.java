@@ -4,6 +4,7 @@ import pl.dfurman.payu.*;
 import pl.dfurman.sales.cart.Cart;
 import pl.dfurman.sales.cart.CartStorage;
 import pl.dfurman.sales.offer.Offer;
+import pl.dfurman.sales.offer.OfferCalculator;
 import pl.dfurman.sales.product.NoSuchProductException;
 import pl.dfurman.sales.product.ProductDetails;
 import pl.dfurman.sales.product.ProductDetailsProvider;
@@ -17,11 +18,13 @@ public class Sales {
     private ProductDetailsProvider productDetailsProvider;
     private PayU payu;
     //private ProductDetails productDetails;
+    private OfferCalculator offerCalculator;
 
-    public Sales(CartStorage cartStorage, ProductDetailsProvider productDetailsProvider, PayU payu) {
+    public Sales(CartStorage cartStorage, ProductDetailsProvider productDetailsProvider, PayU payu, OfferCalculator offerCalculator) {
         this.cartStorage = cartStorage;
         this.productDetailsProvider = productDetailsProvider;
         this.payu = payu;
+        this.offerCalculator = offerCalculator;
     }
 
     public void addToCart(String customerId, String productId) {
@@ -46,7 +49,8 @@ public class Sales {
     }
 
     public Offer getCurrentOffer(String currentCustomer) {
-        return new Offer(currentCustomer);
+        Cart customerCart = cartStorage.load(currentCustomer).get();
+        return offerCalculator.calculateOffer(customerCart, productDetailsProvider);
     }
 
     public int itemsAmount(String customerId) {

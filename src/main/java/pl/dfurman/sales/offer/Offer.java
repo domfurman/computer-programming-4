@@ -5,23 +5,28 @@ import pl.dfurman.sales.cart.Cart;
 import java.math.BigDecimal;
 
 public class Offer {
-    BigDecimal total;
-    Integer itemsCount;
-    String currentCustomer;
+    private BigDecimal total;
+    private int itemsCount;
 
-    public Offer(String currentCustomer) {
-        BigDecimal total = BigDecimal.ZERO;
-        Integer itemsCount = 0;
-        this.currentCustomer = currentCustomer;
+
+    public Offer(BigDecimal total, int itemsCount) {
+        this.total = total;
+        this.itemsCount = itemsCount;
     }
 
+    public Offer empty() {
+        return new Offer(BigDecimal.ZERO, 0);
+    }
 
+    public static Offer offerSummary(BigDecimal total, int itemsCount) {
+        return new Offer(total, itemsCount);
+    }
 
     public BigDecimal getTotal() {
         return total;
     }
 
-    public Integer getItemsCount() {
+    public int getItemsCount() {
         return itemsCount;
     }
 }

@@ -10,6 +10,7 @@ import pl.dfurman.productcatalog.Product;
 import pl.dfurman.productcatalog.ProductCatalog;
 import pl.dfurman.sales.*;
 import pl.dfurman.sales.cart.CartStorage;
+import pl.dfurman.sales.offer.OfferCalculator;
 import pl.dfurman.sales.product.ProductCatalogProductDetailsProvider;
 import pl.dfurman.sales.product.ProductDetails;
 
@@ -40,7 +41,10 @@ public class Main {
 
     @Bean
     Sales createSalesViaObjects(ProductCatalog catalog) {
-        return new Sales(new CartStorage(), new ProductCatalogProductDetailsProvider(catalog), new PayU(new RestTemplate()));
+        return new Sales(new CartStorage(),
+                new ProductCatalogProductDetailsProvider(catalog),
+                new PayU(new RestTemplate()),
+                new OfferCalculator());
     }
 
     Sales createSalesViaLambda(ProductCatalog catalog) {
@@ -56,6 +60,7 @@ public class Main {
                             product.getName(),
                             product.getPrice()
                     ));},
-                new PayU(new RestTemplate()));
+                new PayU(new RestTemplate()),
+                new OfferCalculator());
     }
 }

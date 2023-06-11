@@ -9,7 +9,7 @@ const getProducts = () => {
 }
 
 const getCurrentOffer = () => {
-    return fetch("/api/offer")
+    return fetch("/api/get-current-offer")
         .then(response => response.json());
 }
 
@@ -33,7 +33,6 @@ const createHtmlComponent = (product) => {
             <img />
             <span>${product.price}</span>
             <button
-                type="submit"
                 class="product__add-to-cart"
                 data-product-id="${product.id}"
             >
@@ -45,7 +44,7 @@ const createHtmlComponent = (product) => {
 }
 
 const addToCart = (productId) => {
-    return fetch(`/api/add-to-cart/${productId}`, {
+    return fetch("/api/add-to-cart/{productId}", {
         method: 'POST'
     });
 };
