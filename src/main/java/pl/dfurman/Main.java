@@ -11,6 +11,7 @@ import pl.dfurman.productcatalog.ProductCatalog;
 import pl.dfurman.sales.*;
 import pl.dfurman.sales.cart.CartStorage;
 import pl.dfurman.sales.offer.OfferCalculator;
+import pl.dfurman.sales.product.AvailableProductsList;
 import pl.dfurman.sales.product.ProductCatalogProductDetailsProvider;
 import pl.dfurman.sales.product.ProductDetails;
 
@@ -41,6 +42,7 @@ public class Main {
 
     @Bean
     Sales createSalesViaObjects(ProductCatalog catalog) {
+        AvailableProductsList productsList = new AvailableProductsList();
         return new Sales(new CartStorage(),
                 new ProductCatalogProductDetailsProvider(catalog),
                 new PayU(new RestTemplate()),

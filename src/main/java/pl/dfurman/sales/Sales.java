@@ -8,9 +8,7 @@ import pl.dfurman.sales.offer.OfferCalculator;
 import pl.dfurman.sales.product.NoSuchProductException;
 import pl.dfurman.sales.product.ProductDetails;
 import pl.dfurman.sales.product.ProductDetailsProvider;
-import pl.dfurman.sales.reservation.ReservationData;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 public class Sales {
@@ -34,7 +32,7 @@ public class Sales {
 
         ProductDetails product = loadDetailsForProduct(productId)
                 .orElseThrow(() -> new NoSuchProductException());   //NoSuchProductException was thrown
-        cart.add(product);
+        cart.addProduct(product.getId());
         cartStorage.save(customerId, cart);
     }
 

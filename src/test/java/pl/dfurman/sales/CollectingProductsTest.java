@@ -6,10 +6,8 @@ import org.springframework.web.client.RestTemplate;
 import pl.dfurman.payu.PayU;
 import pl.dfurman.sales.cart.Cart;
 import pl.dfurman.sales.cart.CartStorage;
-import pl.dfurman.sales.product.AlwaysMissingProductDetailsProvider;
-import pl.dfurman.sales.product.AvailableProductsList;
-import pl.dfurman.sales.product.ProductDetails;
-import pl.dfurman.sales.product.ProductDetailsProvider;
+import pl.dfurman.sales.offer.OfferCalculator;
+import pl.dfurman.sales.product.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -20,13 +18,14 @@ import java.util.UUID;
 public class CollectingProductsTest {
 
     CartStorage cartStorage;
-    List<ProductDetails> availableProducts;
-    ProductDetailsProvider productDetailsProvider;
+    AvailableProductsList availableProducts;
+    ProductCatalogProductDetailsProvider products;
 
     @BeforeEach
     void setup() {
         cartStorage = new CartStorage();
-        availableProducts = new ArrayList<>();
+        availableProducts = new AvailableProductsList();
+
         //productDetailsProvider = new AlwaysMissingProductDetailsProvider();
         //productDetails = new ArrayList<>();
     }
@@ -51,8 +50,9 @@ public class CollectingProductsTest {
         assert customerCart.itemsCount() == productsCount;
     }
 
-    private String thereIsProduct(String id, BigDecimal price) {
-        ProductDetails productDetails = new ProductDetails(id, "puzzle", price);
+    private String thereIsProduct(String name, BigDecimal price) {
+        String id = UUID.randomUUID().toString();
+        ProductDetails productDetails = new ProductDetails(id, name, price);
         availableProducts.add(productDetails);
         return id;
     }
@@ -62,6 +62,6 @@ public class CollectingProductsTest {
     }
 
     private Sales thereIsSalesModule() {
-        return new Sales(cartStorage, new AvailableProductsList(availableProducts), new PayU(new RestTemplate()));
+        return new Sales(cartStorage, availableProducts, new PayU(new RestTemplate()), new OfferCalculator());
     }
 }

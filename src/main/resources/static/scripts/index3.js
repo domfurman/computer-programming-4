@@ -1,6 +1,5 @@
-const a = 5;
-const foo = () => {console.log("Hello World!")};
-
+//const a = 5;
+//const foo = () => {console.log("Hello World!")};
 
 
 
@@ -10,24 +9,32 @@ const getProducts = () => {
 }
 
 const getCurrentOffer = () => {
-    return fetch("/api/offer")
+    return fetch("/api/get-current-offer")
         .then(response => response.json())
 }
 
 const refreshOffer = async () => {
     const offer = await getCurrentOffer();
-    const cart = document.querySelector(".cart")
-
-    cart.querySelector(".total").textContent = `${offer.total} PLN`;
-    cart.querySelector(".itemsCount").textContent = `${offer.itemsCount} items`;
+    const cart = document.querySelector('.cart');
+    cart.querySelector('.total').textContent = `${offer.total} PLN`;
+    cart.querySelector('.itemsCount').textContent = `${offer.itemsCount} items`;
 }
+
+
+//const refreshOffer = async () => {
+//    var offer = await getCurrentOffer();
+//    var jsonString = JSON.stringify(offer);
+//    var json = JSON.parse(jsonString);
+//    var cart = document.getElementByClassName('cart')[0];
+//    cart.getElementsByClassName('total')[0].textContent = `${json.total} PLN`;
+//    cart.getElementsByClassName('itemsCount')[1].textContent = json.itemsCount;
+//}
 
 const createHtmlFromString = (htmlAsString) => {
-    const tmpElm = document.createElement('div');
-    tmpElm.innerHTML = htmlAsString.trim();
-    return tmpElm.firstChild;
+    const tmpElem = document.createElement('div');
+    tmpElem.innerHTML = htmlAsString.trim();
+    return tmpElem.firstChild;
 }
-
 
 const createHtmlComponent = (product) => {
     const template = `
@@ -47,7 +54,7 @@ const createHtmlComponent = (product) => {
 }
 
 const addToCart = (productId) => {
-    return fetch(`/api/add-to-cart/${productId}`, {
+    return fetch("/api/add-to-cart/{productId}", {
         method: 'POST'
     });
 };
@@ -62,11 +69,11 @@ const initializeAddToCartHandler = (htmlEl) => {
 };
 
 (async () => {
-    const productListElement = document.querySelector('#products-list');
+    const productsListEl = document.querySelector('#products-list');
     await refreshOffer();
     const products = await getProducts();
     products
         .map(product => createHtmlComponent(product))
         .map(productComponent => initializeAddToCartHandler(productComponent))
-        .forEach(element => productListElement.appendChild(element));
+        .forEach(el => productsListEl.appendChild(el));
 })();
