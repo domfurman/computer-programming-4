@@ -2,6 +2,8 @@ package pl.dfurman.sales;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.web.client.RestTemplate;
+import pl.dfurman.payu.PayU;
 import pl.dfurman.sales.cart.Cart;
 import pl.dfurman.sales.cart.CartStorage;
 import pl.dfurman.sales.product.AlwaysMissingProductDetailsProvider;
@@ -60,6 +62,6 @@ public class CollectingProductsTest {
     }
 
     private Sales thereIsSalesModule() {
-        return new Sales(cartStorage, new AvailableProductsList(availableProducts));
+        return new Sales(cartStorage, new AvailableProductsList(availableProducts), new PayU(new RestTemplate()));
     }
 }

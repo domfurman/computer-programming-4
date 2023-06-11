@@ -46,7 +46,7 @@ public class Sales {
     }
 
     public Offer getCurrentOffer(String currentCustomer) {
-        return new Offer();
+        return new Offer(currentCustomer);
     }
 
     public int itemsAmount(String customerId) {
