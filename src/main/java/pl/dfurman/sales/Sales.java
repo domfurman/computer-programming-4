@@ -49,7 +49,8 @@ public class Sales {
     }
 
     public Offer getCurrentOffer(String currentCustomer) {
-        Cart customerCart = cartStorage.load(currentCustomer).get();
+        Cart customerCart = loadForCustomer(currentCustomer)
+                .orElse(Cart.empty());
         return offerCalculator.calculateOffer(customerCart, productDetailsProvider);
     }
 

@@ -10,14 +10,23 @@ const getProducts = () => {
 
 const getCurrentOffer = () => {
     return fetch("/api/get-current-offer")
-        .then(response => response.json());
+        .then(response => response.json())
 }
 
+//const refreshOffer = async () => {
+//    let offer = await getCurrentOffer();
+//    let cart = document.querySelector('.cart');
+//    cart.querySelector('.total').textContent = `${offer.total} PLN`;
+//    cart.querySelector('.itemsCount').textContent = `${offer.itemsCount} items`;
+//
+//}
+
 const refreshOffer = async () => {
-    const offer = await getCurrentOffer();
-    const cart = document.querySelector('.cart');
-    cart.querySelector('.total').textContent = `${offer.total} PLN`;
-    cart.querySelector('.itemsCount').textContent = `${offer.itemsCount} items`;
+    var offer = await getCurrentOffer();
+    var json = JSON.parse(offer);
+    var cart = document.getElementByClassName('cart')[0];
+    cart.getElementsByClassName('total')[0].textContent = `${json.total} PLN`;
+    cart.getElementsByClassName('itemsCount')[1].textContent = json.itemsCount;
 }
 
 const createHtmlFromString = (htmlAsString) => {
