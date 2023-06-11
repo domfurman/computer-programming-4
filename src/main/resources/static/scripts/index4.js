@@ -57,10 +57,6 @@ const addToCart = (productId) => {
     return fetch("/api/add-to-cart/{productId}", {
         method: 'POST'
     })
-    .then(response => response.json())
-        .catch(error => {
-            console.log('Wystąpił błąd podczas dodawania do koszyka:', error);
-        });
 };
 
 const initializeAddToCartHandler = (htmlEl) => {
