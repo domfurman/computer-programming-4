@@ -1,5 +1,19 @@
 package pl.dfurman.sales;
 
 public class AcceptOffer {
-    public AcceptOffer(String dominik, String s) {}
+    String email;
+    String fname;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getFname() {
+        return fname;
+    }
+
+    public AcceptOffer(String email, String fname) {
+        this.email = email;
+        this.fname=fname;
+    }
 }

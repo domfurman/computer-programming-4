@@ -1,7 +1,19 @@
 package pl.dfurman.sales;
 
 public class PaymentData {
+    String paymentUrl;
+    String paymentId;
+
+    public PaymentData(String paymentUrl, String paymentId) {
+        this.paymentUrl = paymentUrl;
+        this.paymentId = paymentId;
+    }
+
     public String getPaymentUrl() {
-        return null;
+        return paymentUrl;
+    }
+
+    public String getPaymentId() {
+        return paymentId;
     }
 }

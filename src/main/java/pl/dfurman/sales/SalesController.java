@@ -1,9 +1,6 @@
 package pl.dfurman.sales;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.dfurman.sales.offer.Offer;
 
 @RestController
@@ -27,4 +24,9 @@ public class SalesController {
     private String getCurrentCustomer() {
         return "Dominik";
     }
+
+//    @PostMapping("/api/accept-offer")
+//    public ReservationDetails acceptOffer(@RequestBody OfferAcceptanceRequest request) {
+//        return sales.acceptOffer(getCurrentCustomer(), request);
+//    }
 }

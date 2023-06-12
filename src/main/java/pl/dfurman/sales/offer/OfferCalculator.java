@@ -20,22 +20,23 @@ public class OfferCalculator {
 
     public Offer calculateOffer(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
         BigDecimal totalCost = BigDecimal.ZERO;
-        //BigDecimal amount = customerCart.getProducts().stream().map(product -> product.)
-        //BigDecimal amount = BigDecimal.ZERO;
-        //Cart customerCart = cartStorage.load(currentCustomer).get();
-        int itemsAmount = customerCart.itemsCount();
         //int itemsAmount = 2;
 //        String cartProductId = customerCart.getProducts().get(0);
 //        ProductDetails productDetails = productDetailsProvider.load(cartProductId).get();
 //        totalCost.add(productDetails.getPrice());
+
         for (String productId : customerCart.getProducts()) {
             ProductDetails productDetails = productDetailsProvider.load(productId).get();
             BigDecimal cost = productDetails.getPrice().multiply(customerCart.getProductQuantity(productId));
             totalCost = totalCost.add(cost);
         }
+//        String productId = customerCart.getProducts().get(0);
+//        ProductDetails productDetails = productDetailsProvider.load(productId).get();
+//        totalCost = totalCost.add(productDetails.getPrice());
+
         // part1 wyekstraktowac cene z produktu
         // part 2 przeiterowac przez koszyk, wyekstraktowac ceny i zsumowac do zmiennej total
         // part 3 zrobic kod bardziej czytelnym(?)
-        return Offer.offerSummary(totalCost, itemsAmount);
+        return Offer.offerSummary(totalCost, customerCart.itemsCount());
     }
 }

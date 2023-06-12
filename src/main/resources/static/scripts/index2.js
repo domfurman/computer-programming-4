@@ -9,7 +9,7 @@ const getProducts = () => {
 }
 
 const getCurrentOffer = () => {
-    return fetch("/api/get-current-offer")
+    return fetch("/api/offer")
         .then(response => response.json())
 }
 

@@ -4,6 +4,7 @@ import pl.dfurman.sales.product.ProductDetails;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Cart {
 
@@ -25,6 +26,7 @@ public class Cart {
         } else {
             increaseQuantity(productId);
         }
+        products.entrySet().stream().collect(Collectors.toList());
     }
 
     public int itemsCount() {

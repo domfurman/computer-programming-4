@@ -20,16 +20,6 @@ const refreshOffer = async () => {
     cart.querySelector('.itemsCount').textContent = `${offer.itemsCount} items`;
 }
 
-
-//const refreshOffer = async () => {
-//    var offer = await getCurrentOffer();
-//    var jsonString = JSON.stringify(offer);
-//    var json = JSON.parse(jsonString);
-//    var cart = document.getElementByClassName('cart')[0];
-//    cart.getElementsByClassName('total')[0].textContent = `${json.total} PLN`;
-//    cart.getElementsByClassName('itemsCount')[1].textContent = json.itemsCount;
-//}
-
 const createHtmlFromString = (htmlAsString) => {
     const tmpElem = document.createElement('div');
     tmpElem.innerHTML = htmlAsString.trim();
@@ -54,20 +44,16 @@ const createHtmlComponent = (product) => {
 }
 
 const addToCart = (productId) => {
-    return fetch("/api/add-to-cart/{productId}", {
+    return fetch(`/api/add-to-cart/${productId}`, {
         method: 'POST'
-    })
-    .then(response => response.json())
-        .catch(error => {
-            console.log('Wystąpił błąd podczas dodawania do koszyka:', error);
-        });
+    });
 };
 
 const initializeAddToCartHandler = (htmlEl) => {
     const btn = htmlEl.querySelector('button.product__add-to-cart');
     btn.addEventListener('click', () => {
         addToCart(btn.getAttribute('data-product-id'))
-            .then(() => refreshOffer());
+            .then(refreshOffer());
     });
     return htmlEl;
 };

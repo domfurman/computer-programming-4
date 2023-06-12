@@ -8,7 +8,9 @@ import pl.dfurman.sales.offer.OfferCalculator;
 import pl.dfurman.sales.product.NoSuchProductException;
 import pl.dfurman.sales.product.ProductDetails;
 import pl.dfurman.sales.product.ProductDetailsProvider;
+import pl.dfurman.sales.reservation.ReservationData;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 public class Sales {
@@ -58,35 +60,36 @@ public class Sales {
         return  cart.itemsCount();
     }
 
-//    public ReservationData acceptOffer(String customerId, AcceptOfferRequest request) {
-//        Offer offer = this.getCurrentOffer(customerId);
-//
-//        OrderCreateRequest orderCreateRequest = new OrderCreateRequest();
-//        orderCreateRequest.setBuyer(
-//                new Buyer()
-//                        .setFirstName("Dominik")
-//                        .setLastName("F")
-//                        .setEmail("dominik.doe@example.com")
-//        );
-//        orderCreateRequest.setProducts(Arrays.asList(
-//                new Product()
-//                    .setName("NAME")
-//                    .setUnitPrice(21000)
-//                    .setQuantity(2)
-//        ));
-//
-//        OrderCreateResponse response = payu.handle(orderCreateRequest);
-//
-//        return new ReservationData(response.getRedirectUri());
-//
-//        //Reservation reservation = Reservation.from(offer);
-//
-//        //String paymentUrl = paymentGateway.register();
-//
-//        //reservation.registerPayment(paymentUrl);
-//
-//        //reservationStorage.save(reservation);
-//
-//        //return null;
-//    }
+
+    public ReservationData acceptOffer(String customerId, AcceptOfferRequest request) {
+        Offer offer = this.getCurrentOffer(customerId);
+
+        OrderCreateRequest orderCreateRequest = new OrderCreateRequest();
+        orderCreateRequest.setBuyer(
+                new Buyer()
+                        .setFirstName("Dominik")
+                        .setLastName("F")
+                        .setEmail("dominik.doe@example.com")
+        );
+        orderCreateRequest.setProducts(Arrays.asList(
+                new Product()
+                    .setName("NAME")
+                    .setUnitPrice(21000)
+                    .setQuantity(2)
+        ));
+
+        OrderCreateResponse response = payu.handle(orderCreateRequest);
+
+        return new ReservationData(response.getRedirectUri());
+
+        //Reservation reservation = Reservation.from(offer);
+
+        //String paymentUrl = paymentGateway.register();
+
+        //reservation.registerPayment(paymentUrl);
+
+        //reservationStorage.save(reservation);
+
+        //return null;
+    }
 }
