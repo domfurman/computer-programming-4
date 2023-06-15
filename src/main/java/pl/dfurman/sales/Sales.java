@@ -3,7 +3,8 @@ package pl.dfurman.sales;
 import pl.dfurman.payu.*;
 import pl.dfurman.sales.cart.Cart;
 import pl.dfurman.sales.cart.CartStorage;
-import pl.dfurman.sales.offer.AcceptOfferRequest;
+import pl.dfurman.sales.offer.DiscountPolicy;
+import pl.dfurman.sales.reservation.AcceptOfferRequest;
 import pl.dfurman.sales.offer.Offer;
 import pl.dfurman.sales.offer.OfferCalculator;
 import pl.dfurman.sales.product.NoSuchProductException;
@@ -78,6 +79,12 @@ public class Sales {
                     .setUnitPrice(21000)
                     .setQuantity(2)
         ));
+
+        orderCreateRequest.setDescription("e-book shop")
+                .setMerchantPosId("300746")
+                .setCurrencyCode("PLN")
+                .setCustomerIp("127.0.0.1")
+                .setTotalAmount(21000);
 
         OrderCreateResponse response = payu.handle(orderCreateRequest);
 

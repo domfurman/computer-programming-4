@@ -1,4 +1,4 @@
-package pl.dfurman.sales.offer;
+package pl.dfurman.sales.reservation;
 
 public class AcceptOffer {
     String email;
@@ -8,8 +8,7 @@ public class AcceptOffer {
         return email;
     }
 
-    public String getFname() {
-        return fname;
+    public String getFname() {        return fname;
     }
 
     public AcceptOffer(String email, String fname) {

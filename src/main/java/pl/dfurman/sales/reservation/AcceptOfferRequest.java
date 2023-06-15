@@ -1,4 +1,4 @@
-package pl.dfurman.sales.offer;
+package pl.dfurman.sales.reservation;
 
 public class AcceptOfferRequest {
     String firstName;

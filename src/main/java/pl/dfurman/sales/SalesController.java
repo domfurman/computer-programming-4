@@ -2,6 +2,8 @@ package pl.dfurman.sales;
 
 import org.springframework.web.bind.annotation.*;
 import pl.dfurman.sales.offer.Offer;
+import pl.dfurman.sales.reservation.AcceptOfferRequest;
+import pl.dfurman.sales.reservation.ReservationData;
 
 @RestController
 public class SalesController {
@@ -25,8 +27,8 @@ public class SalesController {
         return "Dominik";
     }
 
-//    @PostMapping("/api/accept-offer")
-//    public ReservationDetails acceptOffer(@RequestBody OfferAcceptanceRequest request) {
-//        return sales.acceptOffer(getCurrentCustomer(), request);
-//    }
+    @PostMapping("/api/accept-offer")
+    public ReservationData acceptOffer(@RequestBody AcceptOfferRequest request) {
+        return sales.acceptOffer(getCurrentCustomer(), request);
+    }
 }

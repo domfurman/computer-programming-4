@@ -1,6 +1,5 @@
 package pl.dfurman.sales.offer;
 
-import pl.dfurman.sales.cart.Cart;
 
 import java.math.BigDecimal;
 

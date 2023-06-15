@@ -7,7 +7,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
 import pl.dfurman.productcatalog.Product;
 import pl.dfurman.productcatalog.ProductCatalog;
-import pl.dfurman.sales.offer.AcceptOffer;
+import pl.dfurman.sales.reservation.AcceptOffer;
 import pl.dfurman.sales.payment.PaymentData;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -15,11 +15,11 @@ public class OrderCreateResponse {
         return this;
     }
 
-    public Object getRedirectUri() {
-        return null;
+    public String getRedirectUri() {
+        return redirectUri;
     }
 
-    public Object getOrderId() {
-        return null;
+    public String getOrderId() {
+        return orderId;
     }
 }

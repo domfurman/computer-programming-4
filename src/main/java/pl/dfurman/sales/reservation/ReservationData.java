@@ -1,9 +1,14 @@
 package pl.dfurman.sales.reservation;
 
 public class ReservationData {
+    String email;
+    String firstName;
+
     public ReservationData(Object redirectUri) {
         super();
     }
+
+
 }
 
 
