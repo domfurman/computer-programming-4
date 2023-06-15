@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 public class Cart {
 
-//    List<String> products;
     private HashMap<String, Integer> products;
 
 

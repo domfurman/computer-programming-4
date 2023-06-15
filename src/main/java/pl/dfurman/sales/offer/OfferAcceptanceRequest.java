@@ -1,6 +1,6 @@
-package pl.dfurman.sales;
+package pl.dfurman.sales.offer;
 
-public class AcceptOfferRequest {
+public class OfferAcceptanceRequest {
     String firstName;
     String lastName;
     String email;
@@ -9,7 +9,7 @@ public class AcceptOfferRequest {
         return firstName;
     }
 
-    public AcceptOfferRequest setFirstName(String firstName) {
+    public OfferAcceptanceRequest setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -18,7 +18,7 @@ public class AcceptOfferRequest {
         return lastName;
     }
 
-    public AcceptOfferRequest setLastName(String lastName) {
+    public OfferAcceptanceRequest setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -27,7 +27,7 @@ public class AcceptOfferRequest {
         return email;
     }
 
-    public AcceptOfferRequest setEmail(String email) {
+    public OfferAcceptanceRequest setEmail(String email) {
         this.email = email;
         return this;
     }

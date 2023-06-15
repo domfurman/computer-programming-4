@@ -1,4 +1,4 @@
-package pl.dfurman.sales;
+package pl.dfurman.sales.payment;
 
 public class PaymentData {
     String paymentUrl;

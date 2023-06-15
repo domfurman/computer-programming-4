@@ -1,4 +1,4 @@
-package pl.dfurman.sales;
+package pl.dfurman.sales.offer;
 
 public class AcceptOffer {
     String email;

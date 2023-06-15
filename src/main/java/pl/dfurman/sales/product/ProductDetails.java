@@ -1,11 +1,8 @@
 package pl.dfurman.sales.product;
 
-import pl.dfurman.productcatalog.Product;
 import pl.dfurman.productcatalog.ProductCatalog;
-
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Optional;
+
 
 public class ProductDetails {
 
