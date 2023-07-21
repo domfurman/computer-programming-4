@@ -19,7 +19,7 @@ public class OfferCalculator {
         }
         return Offer.offerSummary(totalCost, customerCart.itemsCount());
 
-    }    
+    }
 //    public Offer calculateOffer(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
 //        if (customerCart.getProducts().size() % 5 != 0) {
 //            BigDecimal totalCost = BigDecimal.ZERO;
