@@ -7,17 +7,23 @@ import pl.dfurman.sales.product.ProductDetailsProvider;
 import java.math.BigDecimal;
 
 public class DiscountPolicy {
-    int discountPolicyThreshold;
+    static int discountPolicyThreshold = 3;
 
-    public DiscountPolicy(int discountPolicyThreshold) {
-        this.discountPolicyThreshold = discountPolicyThreshold;
+    public static void setDiscountPolicyThreshold(int newDiscountPolicyThreshold) {
+        discountPolicyThreshold = newDiscountPolicyThreshold;
     }
 
-    public int getDiscountPolicyThreshold() {
+//    public DiscountPolicy(int discountPolicyThreshold) {
+//        this.discountPolicyThreshold = discountPolicyThreshold;
+//    }
+
+    public static int getDiscountPolicyThreshold() {
         return discountPolicyThreshold;
     }
 
-    public boolean discountCanBeApplied(Cart customerCart) {
+
+
+    public static boolean discountCanBeApplied(Cart customerCart) {
         return customerCart.getProducts().size() % getDiscountPolicyThreshold() == 0;
     }
 

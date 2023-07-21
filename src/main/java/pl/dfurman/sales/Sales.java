@@ -3,7 +3,6 @@ package pl.dfurman.sales;
 import pl.dfurman.payu.*;
 import pl.dfurman.sales.cart.Cart;
 import pl.dfurman.sales.cart.CartStorage;
-import pl.dfurman.sales.offer.DiscountPolicy;
 import pl.dfurman.sales.reservation.AcceptOfferRequest;
 import pl.dfurman.sales.offer.Offer;
 import pl.dfurman.sales.offer.OfferCalculator;

@@ -1,12 +1,12 @@
 package pl.dfurman.sales.offer;
 
 import pl.dfurman.sales.cart.Cart;
-import pl.dfurman.sales.cart.CartStorage;
-import pl.dfurman.sales.product.ProductCatalogProductDetailsProvider;
 import pl.dfurman.sales.product.ProductDetails;
 import pl.dfurman.sales.product.ProductDetailsProvider;
 
 import java.math.BigDecimal;
+
+import static pl.dfurman.sales.offer.DiscountPolicy.discountCanBeApplied;
 
 public class OfferCalculator {
 
@@ -20,6 +20,22 @@ public class OfferCalculator {
         return Offer.offerSummary(totalCost, customerCart.itemsCount());
 
     }
+
+//    public Offer calculateOffer(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
+//        if (discountCanBeApplied(customerCart)) {
+//            return offerWithDiscount(customerCart, productDetailsProvider);
+//        } else {
+//            return calculateBasicOffer(customerCart,productDetailsProvider);
+//        }
+//    }
+//
+//    public Offer offerWithDiscount(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
+//        String lowestPriceProductId = getCheapestProduct(customerCart, productDetailsProvider);
+//        BigDecimal price = productDetailsProvider.load(lowestPriceProductId).get().getPrice();
+//        Offer offer = calculateBasicOffer(customerCart, productDetailsProvider);
+//        BigDecimal afterDiscount = offer.getTotal().subtract(price);
+//        return Offer.offerSummary(afterDiscount, offer.getItemsCount());
+//    }
 //    public Offer calculateOffer(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
 //        if (customerCart.getProducts().size() % 5 != 0) {
 //            BigDecimal totalCost = BigDecimal.ZERO;
