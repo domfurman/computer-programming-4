@@ -21,21 +21,18 @@ public class OfferCalculator {
 
     }
 
-//    public Offer calculateFinalOffer(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
-//        if (!DiscountPolicy.discountCanBeApplied(calculateOffer(customerCart, productDetailsProvider))) {
-//            return calculateOffer(customerCart, productDetailsProvider);
-//        } else {
-//
-//        }
-//    }
+    public Offer calculateFinalOffer(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
+        if (!DiscountPolicy.discountCanBeApplied(calculateOffer(customerCart, productDetailsProvider))) {
+            return calculateOffer(customerCart, productDetailsProvider);
+        } else {
+            Offer basicOffer = calculateOffer(customerCart, productDetailsProvider);
+            String cheapestProductId = getCheapestProduct(customerCart, productDetailsProvider);
+            BigDecimal price = productDetailsProvider.load(cheapestProductId).get().getPrice();
+            BigDecimal totalWithDiscount = basicOffer.getTotal().subtract(price);
+            return Offer.offerSummary(totalWithDiscount, customerCart.itemsCount());
+        }
+    }
 
-//    public Offer calculateOffer(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
-//        if (discountCanBeApplied(customerCart)) {
-//            return offerWithDiscount(customerCart, productDetailsProvider);
-//        } else {
-//            return calculateBasicOffer(customerCart,productDetailsProvider);
-//        }
-//    }
 //
 //    public Offer offerWithDiscount(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
 //        String lowestPriceProductId = getCheapestProduct(customerCart, productDetailsProvider);
@@ -44,30 +41,11 @@ public class OfferCalculator {
 //        BigDecimal afterDiscount = offer.getTotal().subtract(price);
 //        return Offer.offerSummary(afterDiscount, offer.getItemsCount());
 //    }
-//    public Offer calculateOffer(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
-//        if (customerCart.getProducts().size() % 5 != 0) {
-//            BigDecimal totalCost = BigDecimal.ZERO;
-//
-//            for (String productId : customerCart.getProducts()) {
-//                ProductDetails productDetails = productDetailsProvider.load(productId).get();
-//                BigDecimal cost = productDetails.getPrice().multiply(customerCart.getProductQuantity(productId));
-//                totalCost = totalCost.add(cost);
-//            }
-//            return Offer.offerSummary(totalCost, customerCart.itemsCount());
-//        } else {
-//            String lowestPriceProductId = getCheapestProduct(customerCart, productDetailsProvider);
-//            BigDecimal discount = productDetailsProvider.load(lowestPriceProductId).get().getPrice();
-//            BigDecimal totalCost = BigDecimal.ZERO;
-//            for (String productId : customerCart.getProducts()) {
-//                ProductDetails productDetails = productDetailsProvider.load(productId).get();
-//                BigDecimal cost = productDetails.getPrice().multiply(customerCart.getProductQuantity(productId));
-//                totalCost = totalCost.add(cost);
-//            }
-//            return Offer.offerSummary(totalCost.subtract(discount), customerCart.itemsCount());
-//        }
-//    }
 
-    public String getCheapestProduct(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
+
+
+
+    public static String getCheapestProduct(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
         String id = customerCart.getProducts().get(0);
         BigDecimal lowestPrice = productDetailsProvider.load(id).get().getPrice();
         String lowestPriceProductId = productDetailsProvider.load(id).get().getId();

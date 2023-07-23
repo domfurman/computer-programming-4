@@ -45,14 +45,18 @@ public class Sales {
 
     }
 
-    private Optional<Cart> loadForCustomer(String customerId) {
+    public ProductDetailsProvider getProductDetailsProvider() {
+        return productDetailsProvider;
+    }
+
+    public Optional<Cart> loadForCustomer(String customerId) {
         return cartStorage.load(customerId);
     }
 
     public Offer getCurrentOffer(String currentCustomer) {
         Cart customerCart = loadForCustomer(currentCustomer)
                 .orElse(Cart.empty());
-        return offerCalculator.calculateOffer(customerCart, productDetailsProvider);
+        return offerCalculator.calculateFinalOffer(customerCart, productDetailsProvider);
     }
 
     public int itemsAmount(String customerId) {

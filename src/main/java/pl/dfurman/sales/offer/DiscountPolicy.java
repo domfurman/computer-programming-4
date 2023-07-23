@@ -25,7 +25,7 @@ public class DiscountPolicy {
         return offer.getItemsCount() % getDiscountPolicyThreshold() == 0;
     }
 
-    public String getCheapestProduct(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
+    public static String getCheapestProduct(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
         String id = customerCart.getProducts().get(0);
         BigDecimal lowestPrice = productDetailsProvider.load(id).get().getPrice();
         String lowestPriceProductId = productDetailsProvider.load(id).get().getId();
