@@ -6,7 +6,7 @@ import pl.dfurman.sales.product.ProductDetailsProvider;
 
 import java.math.BigDecimal;
 
-import static pl.dfurman.sales.offer.DiscountPolicy.discountCanBeApplied;
+
 
 public class OfferCalculator {
 
@@ -20,6 +20,14 @@ public class OfferCalculator {
         return Offer.offerSummary(totalCost, customerCart.itemsCount());
 
     }
+
+//    public Offer calculateFinalOffer(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
+//        if (!DiscountPolicy.discountCanBeApplied(calculateOffer(customerCart, productDetailsProvider))) {
+//            return calculateOffer(customerCart, productDetailsProvider);
+//        } else {
+//
+//        }
+//    }
 
 //    public Offer calculateOffer(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
 //        if (discountCanBeApplied(customerCart)) {

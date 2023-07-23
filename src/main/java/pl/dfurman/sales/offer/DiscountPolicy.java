@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 public class DiscountPolicy {
     static int discountPolicyThreshold = 3;
 
-    public static void setDiscountPolicyThreshold(int newDiscountPolicyThreshold) {
+    public void setDiscountPolicyThreshold(int newDiscountPolicyThreshold) {
         discountPolicyThreshold = newDiscountPolicyThreshold;
     }
 
@@ -21,10 +21,8 @@ public class DiscountPolicy {
         return discountPolicyThreshold;
     }
 
-
-
-    public static boolean discountCanBeApplied(Cart customerCart) {
-        return customerCart.getProducts().size() % getDiscountPolicyThreshold() == 0;
+    public static boolean discountCanBeApplied(Offer offer) {
+        return offer.getItemsCount() % getDiscountPolicyThreshold() == 0;
     }
 
     public String getCheapestProduct(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
