@@ -6,23 +6,19 @@ import pl.dfurman.sales.product.ProductDetailsProvider;
 
 import java.math.BigDecimal;
 
-public class DiscountPolicy {
-    static int discountPolicyThreshold = 3;
+public class EveryNthItemDiscountPolicy {
+    private final int quantityThreshold;
 
-    public void setDiscountPolicyThreshold(int newDiscountPolicyThreshold) {
-        discountPolicyThreshold = newDiscountPolicyThreshold;
+    public EveryNthItemDiscountPolicy(int quantityThreshold) {
+        this.quantityThreshold = quantityThreshold;
     }
 
-//    public DiscountPolicy(int discountPolicyThreshold) {
-//        this.discountPolicyThreshold = discountPolicyThreshold;
-//    }
-
-    public static int getDiscountPolicyThreshold() {
-        return discountPolicyThreshold;
+    public int getQuantityThreshold() {
+        return quantityThreshold;
     }
 
-    public static boolean discountCanBeApplied(Offer offer) {
-        return offer.getItemsCount() % getDiscountPolicyThreshold() == 0;
+    public boolean discountCanBeApplied(Offer offer) {
+        return offer.getItemsCount() % getQuantityThreshold() == 0;
     }
 
     public static String getCheapestProduct(Cart customerCart, ProductDetailsProvider productDetailsProvider) {

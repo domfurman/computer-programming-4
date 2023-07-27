@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 public class OfferCalculator {
 
-    public Offer calculateOffer(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
+    public static Offer calculateOffer(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
         BigDecimal totalCost = BigDecimal.ZERO;
         for (String productId : customerCart.getProducts()) {
             ProductDetails productDetails = productDetailsProvider.load(productId).get();
@@ -18,11 +18,16 @@ public class OfferCalculator {
             totalCost = totalCost.add(cost);
         }
         return Offer.offerSummary(totalCost, customerCart.itemsCount());
-
     }
 
-    public Offer calculateFinalOffer(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
-        if (!DiscountPolicy.discountCanBeApplied(calculateOffer(customerCart, productDetailsProvider))) {
+    public Offer calculateDiscountOffer(Cart customerCart, ProductDetailsProvider productDetailsProvider, ValueDiscountPolicy valueDiscountPolicy) {
+        Offer offer = calculateOffer(customerCart, productDetailsProvider);
+        offer = valueDiscountPolicy.applyDiscount(customerCart, productDetailsProvider);
+        return offer;
+    }
+
+/*    public Offer calculateFinalOffer(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
+        if (!ValueDiscountPolicy.discountCanBeApplied(calculateOffer(customerCart, productDetailsProvider))) {
             return calculateOffer(customerCart, productDetailsProvider);
         } else {
             Offer basicOffer = calculateOffer(customerCart, productDetailsProvider);
@@ -31,7 +36,7 @@ public class OfferCalculator {
             BigDecimal totalWithDiscount = basicOffer.getTotal().subtract(price);
             return Offer.offerSummary(totalWithDiscount, customerCart.itemsCount());
         }
-    }
+    }*/
 
 //
 //    public Offer offerWithDiscount(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
@@ -45,20 +50,7 @@ public class OfferCalculator {
 
 
 
-    public static String getCheapestProduct(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
-        String id = customerCart.getProducts().get(0);
-        BigDecimal lowestPrice = productDetailsProvider.load(id).get().getPrice();
-        String lowestPriceProductId = productDetailsProvider.load(id).get().getId();
-        for (String productId : customerCart.getProducts()) {
-            ProductDetails productDetails = productDetailsProvider.load(productId).get();
-            BigDecimal price = productDetails.getPrice();
-            if (lowestPrice.compareTo(price) == 1) {
-                lowestPrice = price;
-                lowestPriceProductId = productId;
-            }
-        }
-        return lowestPriceProductId;
-    }
+
 
 
 }

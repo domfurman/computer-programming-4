@@ -3,6 +3,7 @@ package pl.dfurman.sales;
 import pl.dfurman.payu.*;
 import pl.dfurman.sales.cart.Cart;
 import pl.dfurman.sales.cart.CartStorage;
+import pl.dfurman.sales.offer.ValueDiscountPolicy;
 import pl.dfurman.sales.reservation.AcceptOfferRequest;
 import pl.dfurman.sales.offer.Offer;
 import pl.dfurman.sales.offer.OfferCalculator;
@@ -11,6 +12,7 @@ import pl.dfurman.sales.product.ProductDetails;
 import pl.dfurman.sales.product.ProductDetailsProvider;
 import pl.dfurman.sales.reservation.ReservationData;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -56,7 +58,11 @@ public class Sales {
     public Offer getCurrentOffer(String currentCustomer) {
         Cart customerCart = loadForCustomer(currentCustomer)
                 .orElse(Cart.empty());
-        return offerCalculator.calculateFinalOffer(customerCart, productDetailsProvider);
+        return offerCalculator.calculateDiscountOffer(
+                customerCart,
+                productDetailsProvider,
+                new ValueDiscountPolicy(BigDecimal.valueOf(100), BigDecimal.valueOf(10))
+        );
     }
 
     public int itemsAmount(String customerId) {
