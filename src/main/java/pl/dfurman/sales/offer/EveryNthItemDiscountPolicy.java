@@ -17,11 +17,22 @@ public class EveryNthItemDiscountPolicy {
         return quantityThreshold;
     }
 
-    public boolean discountCanBeApplied(Offer offer) {
+    public boolean discountCanBeApplied(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
+        Offer offer = OfferCalculator.calculateOffer(customerCart, productDetailsProvider);
         return offer.getItemsCount() % getQuantityThreshold() == 0;
     }
 
-    public static String getCheapestProduct(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
+    public Offer applyDiscount(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
+        Offer offer = OfferCalculator.calculateOffer(customerCart, productDetailsProvider);
+        if (!discountCanBeApplied(customerCart, productDetailsProvider)) {
+            return offer;
+        } else {
+            BigDecimal val = getCheapestProduct(customerCart, productDetailsProvider);
+            return new Offer(offer.getTotal().subtract(val), offer.getItemsCount());
+        }
+    }
+
+    public BigDecimal getCheapestProduct(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
         String id = customerCart.getProducts().get(0);
         BigDecimal lowestPrice = productDetailsProvider.load(id).get().getPrice();
         String lowestPriceProductId = productDetailsProvider.load(id).get().getId();
@@ -33,6 +44,6 @@ public class EveryNthItemDiscountPolicy {
                 lowestPriceProductId = productId;
             }
         }
-        return lowestPriceProductId;
+        return lowestPrice;
     }
 }

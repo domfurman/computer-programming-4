@@ -3,6 +3,7 @@ package pl.dfurman.sales;
 import pl.dfurman.payu.*;
 import pl.dfurman.sales.cart.Cart;
 import pl.dfurman.sales.cart.CartStorage;
+import pl.dfurman.sales.offer.EveryNthItemDiscountPolicy;
 import pl.dfurman.sales.offer.ValueDiscountPolicy;
 import pl.dfurman.sales.reservation.AcceptOfferRequest;
 import pl.dfurman.sales.offer.Offer;
@@ -22,12 +23,17 @@ public class Sales {
     private PayU payu;
     //private ProductDetails productDetails;
     private OfferCalculator offerCalculator;
+    public String discountType = "productsQuantity";
 
     public Sales(CartStorage cartStorage, ProductDetailsProvider productDetailsProvider, PayU payu, OfferCalculator offerCalculator) {
         this.cartStorage = cartStorage;
         this.productDetailsProvider = productDetailsProvider;
         this.payu = payu;
         this.offerCalculator = offerCalculator;
+    }
+
+    public String getDiscountType() {
+        return discountType;
     }
 
     public void addToCart(String customerId, String productId) {
@@ -58,11 +64,24 @@ public class Sales {
     public Offer getCurrentOffer(String currentCustomer) {
         Cart customerCart = loadForCustomer(currentCustomer)
                 .orElse(Cart.empty());
-        return offerCalculator.calculateDiscountOffer(
-                customerCart,
-                productDetailsProvider,
-                new ValueDiscountPolicy(BigDecimal.valueOf(100), BigDecimal.valueOf(10))
-        );
+        if (discountType == "value") {
+            return offerCalculator.calculateDiscountOffer(
+                    customerCart,
+                    productDetailsProvider,
+                    new ValueDiscountPolicy(BigDecimal.valueOf(100), BigDecimal.valueOf(10))
+            );
+        } else if (discountType == "productsQuantity") {
+            return offerCalculator.calculateDiscountOffer(
+                    customerCart,
+                    productDetailsProvider,
+                    new EveryNthItemDiscountPolicy(3)
+            );
+        } else {
+            return offerCalculator.calculateOffer(
+                    customerCart,
+                    productDetailsProvider
+            );
+        }
     }
 
     public int itemsAmount(String customerId) {

@@ -26,6 +26,14 @@ public class OfferCalculator {
         return offer;
     }
 
+    public Offer calculateDiscountOffer(Cart customerCart, ProductDetailsProvider productDetailsProvider, EveryNthItemDiscountPolicy nthItemPolicy) {
+        Offer offer = calculateOffer(customerCart, productDetailsProvider);
+        offer = nthItemPolicy.applyDiscount(customerCart, productDetailsProvider);
+        return offer;
+    }
+
+
+
 /*    public Offer calculateFinalOffer(Cart customerCart, ProductDetailsProvider productDetailsProvider) {
         if (!ValueDiscountPolicy.discountCanBeApplied(calculateOffer(customerCart, productDetailsProvider))) {
             return calculateOffer(customerCart, productDetailsProvider);

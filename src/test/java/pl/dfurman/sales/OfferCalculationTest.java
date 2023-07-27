@@ -44,7 +44,7 @@ public class OfferCalculationTest {
         assertEquals(BigDecimal.valueOf(21), sales.getCurrentOffer(customer).getTotal());
     }
 
-    /*@Test
+/*    @Test
     void itExtractsCheapestProduct() {
         Sales sales = thereIsSalesModule();
         //sales.get();
@@ -71,15 +71,21 @@ public class OfferCalculationTest {
         Sales sales = thereIsSalesModule();
         String customer = thereIsCustomer("TypicalUser");
         String product1 = thereIsProduct("Prod1", BigDecimal.valueOf(100));
-        String product2 = thereIsProduct("Prod2", BigDecimal.valueOf(10));
-        String product3 = thereIsProduct("Prod3", BigDecimal.valueOf(1));
+        String product2 = thereIsProduct("Prod2", BigDecimal.valueOf(50));
+        String product3 = thereIsProduct("Prod3", BigDecimal.valueOf(30)); //180
 
         sales.addToCart(customer, product1);
         sales.addToCart(customer, product2);
         sales.addToCart(customer, product3);
 
-        assertEquals(BigDecimal.valueOf(101), sales.getCurrentOffer(customer).getTotal());
+        if (sales.getDiscountType() == "value") {
+            assertEquals(BigDecimal.valueOf(170), sales.getCurrentOffer(customer).getTotal());
+        } else {
+            assertEquals(BigDecimal.valueOf(150), sales.getCurrentOffer(customer).getTotal());
+        }
+
     }
+
 
     private String thereIsProduct(String name, BigDecimal price) {
         String id = UUID.randomUUID().toString();
